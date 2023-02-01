@@ -23,13 +23,20 @@ btnElement.addEventListener('click', function() {
     
     //    b. recuperare i dati inseriti dall'utente e calcolare prezzo
 
-    ticketPrice = KM_PRICE * parseFloat(inputKmElement.value);
+    let km = parseFloat(inputKmElement.value);
+
+    if(isNaN(km)) {
+        km = 10;
+    }
+
+    ticketPrice = KM_PRICE * km ;
     const luckElement = document.getElementById('good-luck');
 
-    if(parseFloat(inputKmElement.value) >= 100) {
+    if(km >= 100) {
         luckElement.innerHTML = 'Ti fidi eh?!'; 
     }
 
+ 
     // console.log(inputKmElement.value);
     // console.log(ticketPrice);
 
