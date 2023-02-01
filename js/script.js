@@ -7,6 +7,8 @@
 const btnElement = document.querySelector('input[type="button"]');
 const inputKmElement = document.querySelector('input[name="km"]');
 const selectAgeElement = document.querySelector('select[name="age"]');
+const nameElement = document.querySelector('input[name="first-last-name"]');
+// console.log(nameElement)
 
 // console.log(btnElement, inputKmElement, selectAgeElement);
 
@@ -19,29 +21,48 @@ btnElement.addEventListener('click', function() {
 
     const KM_PRICE = 0.21;
     
-    //    b. recuperare i km inseriti dall'utente e calcolare prezzo
+    //    b. recuperare i dati inseriti dall'utente e calcolare prezzo
 
-    ticketPrice = KM_PRICE * inputKmElement.value;
+    ticketPrice = KM_PRICE * parseFloat(inputKmElement.value);
+    const luckElement = document.getElementById('good-luck');
+
+    if(parseFloat(inputKmElement.value) >= 100) {
+        luckElement.innerHTML = 'Ti fidi eh?!'; 
+    }
+
     // console.log(inputKmElement.value);
     // console.log(ticketPrice);
 
     //    c. applica eventuale sconto
 
+    const discountElement = document.getElementById('discount');
     let sconto = 0; 
+    discountElement.innerHTML = '0';
 
     if (selectAgeElement.value === 'underage') {
         // console.log('Exum');
         sconto = ticketPrice * 0.2;
+        discountElement.innerHTML = '20%';
        // console.log('under', sconto);
     } else if (selectAgeElement.value === 'over') {
         // console.log('Avramovic');
         sconto = ticketPrice * 0.4;
+        discountElement.innerHTML = '40%';
        // console.log('over', sconto);
-    }
+    } 
 
-    //    d. stampare il costo
+    //    d. stampare i dati
+
+    const canvaElement = document.getElementById('canva');
+    canvaElement.classList.toggle('canva');
+
+    const infoElement = document.getElementById('info');
+    infoElement.innerHTML = nameElement.value;
+    
+    const priceElement = document.getElementById('price');
+
     
     const finalPrice = ticketPrice - sconto;
-    console.log(finalPrice.toFixed(2));
+    priceElement.innerHTML = finalPrice.toFixed(2) + '€';
 
 })
