@@ -73,3 +73,14 @@ btnElement.addEventListener('click', function() {
     priceElement.innerHTML = finalPrice.toFixed(2) + '€';
 
 })
+
+// bottone reset
+
+const resetElement = document.querySelector('input[type="reset"');
+// console.log(resetElement);
+
+resetElement.addEventListener('click', function() {
+    inputKmElement.value = ' ';
+    selectAgeElement.value = ' ';
+    nameElement.value = ' ';
+})
